@@ -1,3 +1,7 @@
+<?php
+	// require_once "{$_SERVER["DOCUMENT_ROOT"]}/relative/path/to/file.php";
+?>
+
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -13,6 +17,6 @@
 		<title>Storyline</title>
 	</head>
 	<body>
-		
+
 	</body>
 </html>
