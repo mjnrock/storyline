@@ -73,8 +73,14 @@
 		public static function Get($route, $callback) {
 			Router::Route("GET", $route, $callback);
 		}
-		public static function QuickGet($route, $URI) {
-			Router::Route("GET", $route, (function() use ($URI) {
+		public static function QuickGet($route, $URI, $preload = NULL) {
+			Router::$LastRequest = new Request($route, Router::GetRequestURI(), Router::GetVerb(), Router::GetParams(), Router::GetQuery());
+			$ViewBag = NULL;
+			$Request = Router::$LastRequest;
+			if(Router::CheckRoute(Router::$LastRequest, $route) && is_callable($preload)) {
+				$ViewBag = $preload(Router::$LastRequest);
+			}
+			Router::Route("GET", $route, (function() use ($URI, $Request, $ViewBag) {
 				require_once "{$_SERVER["DOCUMENT_ROOT"]}/routes/{$URI}.php";
 			}));
 		}
