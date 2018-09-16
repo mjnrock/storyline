@@ -536,8 +536,9 @@ SQL
             $sql = $this->conn->prepare($query);
             foreach($data["Types"] as $i => $type) {
                 $sql->bindValue($i + 1, $data["Values"][$i], $type);
-            }
-            $sql->execute();
+			}
+			print_r($data);
+			$sql->execute();
             
             /*echo "<pre>";
             $sql->debugDumpParams();
